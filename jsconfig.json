@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@api/*": ["./src/core/api/*"],
+      "@boot/*": ["./src/ui/boot/*"],
+      "@components/*": ["./src/ui/components/*"],
+      "@config/*": ["./src/core/config/*"],
+      "@core/*": ["./src/core/*"],
+      "@hooks/*": ["./src/ui/hooks/*"],
+      "@pages/*": ["./src/ui/pages/*"],
+      "@public/*": ["./public/*"],
+      "@services/*": ["./src/core/services/*"],
+      "@styles/*": ["./src/ui/styles/*"],
+      "@utils/*": ["./src/core/utils/*"],
+      "@views/*": ["./src/ui/views/*"]
+    }
+  }
+}
