@@ -1,0 +1,27 @@
+@import '@styles/values.scss';
+
+.profile {
+  padding: 2rem;
+  background-color: $body-color;
+  min-height: 100vh;
+}
+
+.list,
+.vote,
+.cards {
+  max-width: 48rem;
+  width: 100%;
+}
+
+.list {
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: $white-color;
+  height: fit-content;
+}
+
+.vote {
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: $white-color;
+}
