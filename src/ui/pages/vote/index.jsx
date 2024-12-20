@@ -1,6 +1,8 @@
 import { Button, Card, Col, Collapse, Flex, Row, Select } from 'antd';
 import { useState } from 'react';
+import { Link } from 'react-router';
 
+import { PROFILE } from '@/ui/boot/router/routes';
 import Heading from '@/ui/components/heading';
 import Text from '@/ui/components/text';
 import { courseVocabulary } from '@/ui/constants/course';
@@ -57,9 +59,7 @@ const Vote = () => {
                       />
                     </Flex>
 
-                    <Button href={option.link}>
-                      Переглянути презентацію курсу
-                    </Button>
+                    <Button href={option.link}>Презентація</Button>
                   </Flex>
                 </Collapse.Panel>
               ))}
@@ -94,7 +94,9 @@ const Vote = () => {
                   </Col>
                 ))}
               </Row>
-              <Button type="primary">Зберегти</Button>
+              <Button type="primary">
+                <Link to={PROFILE}>Зберегти</Link>
+              </Button>
             </Flex>
           </Card>
         )}
