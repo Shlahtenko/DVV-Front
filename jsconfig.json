@@ -2,7 +2,6 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"],
-      "@/assets/*": ["./src/assets/*"],
       "@api/*": ["./src/core/api/*"],
       "@boot/*": ["./src/ui/boot/*"],
       "@components/*": ["./src/ui/components/*"],

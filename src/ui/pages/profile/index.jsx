@@ -1,4 +1,5 @@
 import { Button, Card, Col, Flex, List, Row } from 'antd';
+import { useState } from 'react';
 
 import Heading from '@/ui/components/heading';
 import Text from '@/ui/components/text';
@@ -6,6 +7,8 @@ import Text from '@/ui/components/text';
 import styles from './profile.module.scss';
 
 const Profile = () => {
+  const [isEditing, setIsEditing] = useState(false);
+
   const list = [
     { title: 'Електронна пошта:', value: '' },
     { title: 'Факультет:', value: '' },
@@ -16,13 +19,17 @@ const Profile = () => {
   ];
 
   const votedsubjects = [
-    { title: 'Електронна пошта:' },
+    {
+      title: 'Електронна пошта',
+    },
     { title: 'Факультет:' },
     { title: 'Спеціальність:' },
     { title: 'Ступінь:' },
     { title: 'Курс:' },
     { title: 'Форма навчання:' },
   ];
+
+  const voted = false;
 
   return (
     <Flex className={styles.profile} align="center" gap="large" vertical>
@@ -33,31 +40,41 @@ const Profile = () => {
         dataSource={list}
         renderItem={(item) => (
           <List.Item>
-            {/* <List.Item.Meta title={item.title} description={item.value} />
-        <div>content</div> */}
             <Flex>{item.title}</Flex>
             <Flex>{item.value}</Flex>
           </List.Item>
         )}
       >
         <Flex align="center" justify="flex-end">
-          <Button>Редагувати</Button>
-          <Button>Зберегти</Button>
+          {!isEditing ? (
+            <Button onClick={() => setIsEditing((prev) => !prev)}>
+              Редагувати
+            </Button>
+          ) : (
+            <Button onClick={() => setIsEditing((prev) => !prev)}>
+              Зберегти
+            </Button>
+          )}
         </Flex>
       </List>
-      <Flex className={styles.vote} align="center" justify="space-between">
-        <Text text="Вам потрібно обрати дисципліни вільного вибору"></Text>
-        <Button type="primary">Обрати</Button>
-      </Flex>
-      <Flex>
-        <Row className={styles.cards} gutter={[16, 16]} justify="center">
-          {votedsubjects.map((item) => (
-            <Col key={item.id} xs={24} sm={12} md={8} lg={6}>
-              <Card>{item.title}</Card>
-            </Col>
-          ))}
-        </Row>
-      </Flex>
+      {voted ? (
+        <Flex className={styles.vote} align="center" justify="space-between">
+          <Text text="Вам потрібно обрати дисципліни вільного вибору"></Text>
+          <Button type="primary">Обрати</Button>
+        </Flex>
+      ) : (
+        <Flex className={styles.cards} gap="large" align="center" vertical>
+          <Heading text="Обрані дисципліни вільного вибору:" />
+          <Row gutter={[16, 16]} justify="center">
+            {votedsubjects.map((item) => (
+              <Col key={item.id} xs={24} sm={12}>
+                <Card style={{ textAlign: 'center' }}>{item.title}</Card>
+              </Col>
+            ))}
+          </Row>
+        </Flex>
+      )}
+
       <Button type="primary" danger>
         Вийти з акаунту
       </Button>

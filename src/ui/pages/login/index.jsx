@@ -1,5 +1,5 @@
 import { Button, Flex, Form, Image, Input } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 import { REGISTER } from '@boot/router/routes.js';
 import Heading from '@components/heading';
