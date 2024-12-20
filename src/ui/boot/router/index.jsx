@@ -11,8 +11,12 @@ const Error = lazy(() => import('@pages/error'));
 
 const router = createBrowserRouter([
   {
-    path: '/profile',
-    element: <Profile />,
+    path: PROFILE,
+    element: (
+      <ProtectedRoute>
+        <Profile />
+      </ProtectedRoute>
+    ),
   },
   { path: LOGIN, element: <Login /> },
   { path: REGISTER, element: <Register /> },
