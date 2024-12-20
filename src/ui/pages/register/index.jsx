@@ -24,6 +24,24 @@ const Register = () => {
       <Card className={styles.card}>
         <Form layout="vertical">
           <Form.Item
+            label="Ім'я"
+            name="name"
+            rules={[
+              { required: true, message: "Будь-ласка введіть ваше ім'я!" },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Прізвище"
+            name="surname"
+            rules={[
+              { required: true, message: 'Будь-ласка введіть ваше прізвище!' },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
             label="Email"
             name="username"
             rules={[
