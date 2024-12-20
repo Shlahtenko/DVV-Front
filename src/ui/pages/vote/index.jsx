@@ -38,55 +38,65 @@ const Vote = () => {
   return (
     <Flex className={styles.vote} align="center" gap="large" vertical>
       <Heading
-        text={`Вам потрібно обрати ${requiredSubjects} предмети з переліку`}
+        text={`Вам потрібно обрати ${requiredSubjects} дисципліни з переліку`}
       />
       <Flex className={styles.content} gap="large" vertical>
-        <Heading text={`Огляд дисциплін`} />
-        <Collapse accordion>
-          {options.map((option) => (
-            <Collapse.Panel header={option.title} key={option.link}>
-              <Flex vertical>
-                <Text bpref="Викладач:" text={option.teacher} />
-                <Text bpref="Факультет:" text={option.faculty} />
-                <Text bpref="Опис дисципліни:" text={option.description} />
-                <Flex justify="flex-end">
-                  <Button href={option.link}>
-                    Переглянути презентацію курсу
-                  </Button>
-                </Flex>
-              </Flex>
-            </Collapse.Panel>
-          ))}
-        </Collapse>
+        <Card className={styles.overview}>
+          <Flex gap="large" vertical>
+            <Heading text={`Огляд дисциплін`} />
+            <Collapse accordion>
+              {options.map((option) => (
+                <Collapse.Panel header={option.title} key={option.link}>
+                  <Flex gap="large" vertical>
+                    <Flex vertical>
+                      <Text bpref="Викладач:" text={option.teacher} />
+                      <Text bpref="Факультет:" text={option.faculty} />
+                      <Text
+                        bpref="Опис дисципліни:"
+                        text={option.description}
+                      />
+                    </Flex>
 
-        <Heading text={`Вибір дисциплін`} />
-        <Select
-          mode="multiple"
-          placeholder="Оберіть дисципліни"
-          onChange={handleChange}
-          options={options.map((option) => ({
-            label: option.title,
-            value: option.title,
-          }))}
-          maxCount={requiredSubjects}
-        ></Select>
+                    <Button href={option.link}>
+                      Переглянути презентацію курсу
+                    </Button>
+                  </Flex>
+                </Collapse.Panel>
+              ))}
+            </Collapse>
+          </Flex>
+        </Card>
+
+        <Card className={styles.selection}>
+          <Flex gap="large" vertical>
+            <Heading text={`Вибір дисциплін`} />
+            <Select
+              mode="multiple"
+              placeholder="Оберіть дисципліни"
+              onChange={handleChange}
+              options={options.map((option) => ({
+                label: option.title,
+                value: option.title,
+              }))}
+              maxCount={requiredSubjects}
+            ></Select>
+          </Flex>
+        </Card>
 
         {selectedSubjects.length > 0 && (
-          <>
+          <Card className={styles.results}>
             <Flex className={styles.cards} gap="large" vertical>
-              <Heading text="Обрані дисципліни:" />
+              <Heading text="Обрані дисципліни" />
               <Row gutter={[16, 16]} justify="center">
-                {selectedSubjects.map((item) => (
-                  <Col key={item.id} xs={24} sm={12}>
+                {selectedSubjects.map((item, index) => (
+                  <Col key={index} xs={24} sm={12}>
                     <Card style={{ textAlign: 'center' }}>{item}</Card>
                   </Col>
                 ))}
               </Row>
-            </Flex>
-            <Flex justify="flex-end">
               <Button type="primary">Зберегти</Button>
             </Flex>
-          </>
+          </Card>
         )}
       </Flex>
     </Flex>

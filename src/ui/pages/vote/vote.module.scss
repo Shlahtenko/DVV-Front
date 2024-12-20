@@ -1,14 +1,30 @@
 @import '@styles/values.scss';
 
 .vote {
-  background-color: $body-color;
   min-height: 100vh;
-  padding: 4rem 0;
+  background-color: $body-color;
+  padding: 2rem 0;
+
+  > h2 {
+    text-align: center;
+  }
+
+  @media (min-width: $xs) {
+    padding: 2rem;
+  }
+
+  @media (min-width: $sm) {
+    padding: 2rem 3rem;
+  }
 }
 
 .content {
-  background-color: $white-color;
-  padding: 2rem;
-  border-radius: 1rem;
-  min-width: 56rem;
+  width: 100%;
+  max-width: 54rem;
+  @media (min-width: $xs) {
+    a,
+    button {
+      margin-left: auto;
+    }
+  }
 }
