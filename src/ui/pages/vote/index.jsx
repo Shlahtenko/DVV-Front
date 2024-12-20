@@ -1,4 +1,4 @@
-import { Button, Col, Collapse, Flex, Row, Select } from 'antd';
+import { Button, Card, Col, Collapse, Flex, Row, Select } from 'antd';
 import { useState } from 'react';
 
 import Heading from '@/ui/components/heading';
@@ -64,21 +64,29 @@ const Vote = () => {
           mode="multiple"
           placeholder="Оберіть дисципліни"
           onChange={handleChange}
-          options={options}
+          options={options.map((option) => ({
+            label: option.title,
+            value: option.title,
+          }))}
           maxCount={requiredSubjects}
         ></Select>
 
         {selectedSubjects.length > 0 && (
-          <Flex className={styles.cards} gap="large" vertical>
-            <Heading text="Обрані дисципліни:" />
-            <Row gutter={[16, 16]} justify="center">
-              {selectedSubjects.map((item) => (
-                <Col key={item.id} xs={24} sm={12}>
-                  <Card style={{ textAlign: 'center' }}>{item.title}</Card>
-                </Col>
-              ))}
-            </Row>
-          </Flex>
+          <>
+            <Flex className={styles.cards} gap="large" vertical>
+              <Heading text="Обрані дисципліни:" />
+              <Row gutter={[16, 16]} justify="center">
+                {selectedSubjects.map((item) => (
+                  <Col key={item.id} xs={24} sm={12}>
+                    <Card style={{ textAlign: 'center' }}>{item}</Card>
+                  </Col>
+                ))}
+              </Row>
+            </Flex>
+            <Flex justify="flex-end">
+              <Button type="primary">Зберегти</Button>
+            </Flex>
+          </>
         )}
       </Flex>
     </Flex>
