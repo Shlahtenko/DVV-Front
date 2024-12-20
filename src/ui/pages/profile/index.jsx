@@ -1,5 +1,6 @@
 import { Button, Card, Col, Flex, List, Row } from 'antd';
 import { useState } from 'react';
+import { Link } from 'react-router';
 
 import Heading from '@/ui/components/heading';
 import Text from '@/ui/components/text';
@@ -18,7 +19,7 @@ const Profile = () => {
     { title: 'Форма навчання:', value: '' },
   ];
 
-  const votedsubjects = [
+  const votedSubjects = [
     {
       title: 'Електронна пошта',
     },
@@ -57,16 +58,18 @@ const Profile = () => {
           )}
         </Flex>
       </List>
-      {voted ? (
+      {!voted ? (
         <Flex className={styles.vote} align="center" justify="space-between">
           <Text text="Вам потрібно обрати дисципліни вільного вибору"></Text>
-          <Button type="primary">Обрати</Button>
+          <Button type="primary">
+            <Link to="/vote">Обрати</Link>
+          </Button>
         </Flex>
       ) : (
         <Flex className={styles.cards} gap="large" align="center" vertical>
           <Heading text="Обрані дисципліни вільного вибору:" />
           <Row gutter={[16, 16]} justify="center">
-            {votedsubjects.map((item) => (
+            {votedSubjects.map((item) => (
               <Col key={item.id} xs={24} sm={12}>
                 <Card style={{ textAlign: 'center' }}>{item.title}</Card>
               </Col>

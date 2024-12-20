@@ -1,0 +1,14 @@
+@import '@styles/values.scss';
+
+.vote {
+  background-color: $body-color;
+  min-height: 100vh;
+  padding: 4rem 0;
+}
+
+.content {
+  background-color: $white-color;
+  padding: 2rem;
+  border-radius: 1rem;
+  min-width: 56rem;
+}
