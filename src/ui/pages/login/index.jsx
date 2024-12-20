@@ -1,4 +1,4 @@
-import { Button, Flex, Form, Image, Input } from 'antd';
+import { Button, Card, Flex, Form, Image, Input } from 'antd';
 import { Link } from 'react-router';
 
 import { REGISTER } from '@boot/router/routes.js';
@@ -21,34 +21,36 @@ const Login = () => {
         <Heading text="З поверненням!" />
         <Text text="Щоб увійти, будь ласка, введіть свої дані." />
       </Flex>
-      <Form className={styles.form} layout="vertical">
-        <Form.Item
-          label="Email"
-          name="username"
-          rules={[
-            { required: true, message: 'Будь ласка введіть вашу пошту!' },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Пароль"
-          name="password"
-          rules={[
-            { required: true, message: 'Будь ласка введіть ваш пароль!' },
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
-        <Form.Item label={null}>
-          <Button className={styles.button} type="primary" htmlType="submit">
-            Увійти
-          </Button>
-        </Form.Item>
-        <p>
-          Немає акаунту? <Link to={REGISTER}>Зареєструватись</Link>
-        </p>
-      </Form>
+      <Card className={styles.form}>
+        <Form className={styles.form} layout="vertical">
+          <Form.Item
+            label="Email"
+            name="username"
+            rules={[
+              { required: true, message: 'Будь ласка введіть вашу пошту!' },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Пароль"
+            name="password"
+            rules={[
+              { required: true, message: 'Будь ласка введіть ваш пароль!' },
+            ]}
+          >
+            <Input.Password />
+          </Form.Item>
+          <Form.Item label={null}>
+            <Button className={styles.button} type="primary">
+              Увійти
+            </Button>
+          </Form.Item>
+          <p>
+            Немає акаунту? <Link to={REGISTER}>Зареєструватись</Link>
+          </p>
+        </Form>
+      </Card>
     </Flex>
   );
 };

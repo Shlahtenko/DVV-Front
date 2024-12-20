@@ -1,16 +1,26 @@
 @import '@styles/values.scss';
 
 .register {
-  background-color: $body-color;
+  padding: 2rem 1rem;
   min-height: 100vh;
+  max-width: 24rem;
+
+  > h2,
+  p {
+    text-align: center;
+  }
+
+  @media (min-width: $xs) {
+    padding: 2rem;
+  }
+
+  @media (min-width: $sm) {
+    padding: 2rem 3rem;
+  }
 }
 
-.form {
-  background-color: $white-color;
-  padding: 2rem;
-  border-radius: 1rem;
-  min-width: 20rem;
-  max-width: 20rem;
+.card {
+  width: 100%;
 }
 
 .button {
