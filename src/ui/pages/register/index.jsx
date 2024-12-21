@@ -43,7 +43,7 @@ const Register = () => {
           </Form.Item>
           <Form.Item
             label="Email"
-            name="username"
+            name="email"
             rules={[
               { required: true, message: 'Будь ласка введіть вашу пошту!' },
             ]}

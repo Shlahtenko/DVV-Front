@@ -21,10 +21,30 @@
 .content {
   width: 100%;
   max-width: 54rem;
+
   @media (min-width: $xs) {
     a,
-    button {
+    button:not(:last-child) {
       margin-left: auto;
+    }
+  }
+}
+
+.listItem {
+  flex-direction: column;
+  gap: 0.5rem;
+
+  .dropdown {
+    width: 100%;
+  }
+
+  @media (min-width: $xs) {
+    flex-direction: row;
+
+    .data {
+      margin-left: auto;
+      width: 12rem;
+      justify-content: end;
     }
   }
 }
