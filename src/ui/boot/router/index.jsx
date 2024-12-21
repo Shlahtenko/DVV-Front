@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router';
 
-import ProtectedRoute from './protectedRoute';
+import { AuthorizedRoute, ProtectedRoute } from '../ProtectedRoutes';
 import { ERROR, LOGIN, PROFILE, REGISTER, VOTE } from './routes';
 
 const Login = lazy(() => import('@pages/login'));
@@ -27,8 +27,22 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
   },
-  { path: LOGIN, element: <Login /> },
-  { path: REGISTER, element: <Register /> },
+  {
+    path: LOGIN,
+    element: (
+      <AuthorizedRoute>
+        <Login />
+      </AuthorizedRoute>
+    ),
+  },
+  {
+    path: REGISTER,
+    element: (
+      <AuthorizedRoute>
+        <Register />
+      </AuthorizedRoute>
+    ),
+  },
   { path: ERROR, element: <Error /> },
 ]);
 

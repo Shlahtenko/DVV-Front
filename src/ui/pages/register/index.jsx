@@ -1,13 +1,36 @@
+// import { queryClient } from '@';
 import { Button, Card, Flex, Form, Image, Input } from 'antd';
-import { Link } from 'react-router';
+import { Link, Navigate, useNavigate } from 'react-router';
 
-import { LOGIN } from '@boot/router/routes.js';
+import { createUser } from '@/core/api/auth';
+import useMutate from '@/ui/hooks/useMutate';
+import { LOGIN, PROFILE } from '@boot/router/routes.js';
 import Heading from '@components/heading';
 import Text from '@components/text';
 
 import styles from './register.module.scss';
 
 const Register = () => {
+  const navigate = useNavigate();
+
+  const { mutate, isLoading } = useMutate({
+    fetcher: createUser,
+    onSuccess: () => {
+      navigate(PROFILE, { replace: true });
+    },
+    onError: (error) => {
+      console.error(error?.response?.data?.error);
+    },
+  });
+
+  const handleSubmit = (values) => {
+    const fullname = `${values.name} ${values.surname}`;
+    const { name, surname, ...data } = values;
+    const finalData = { fullname, ...data };
+    // console.log(finalData);
+    mutate(finalData);
+  };
+
   return (
     <Flex
       className={styles.register}
@@ -22,7 +45,7 @@ const Register = () => {
         <Text text="Щоб зареєструватись, будь ласка, введіть свої дані." />
       </Flex>
       <Card className={styles.card}>
-        <Form layout="vertical">
+        <Form layout="vertical" onFinish={handleSubmit}>
           <Form.Item
             label="Ім'я"
             name="name"
@@ -60,7 +83,7 @@ const Register = () => {
             <Input.Password />
           </Form.Item>
           <Form.Item label={null}>
-            <Button className={styles.button} type="primary">
+            <Button className={styles.button} type="primary" htmlType="submit">
               Зареєструватись
             </Button>
           </Form.Item>

@@ -6,14 +6,12 @@ export function getUsers(params) {
   return axiosInstance.get(`${PREFIX}/`, { params });
 }
 
-export function createUser(params) {
-  return axiosInstance.post(`${PREFIX}/`, params);
+export function getUserById(params) {
+  return axiosInstance.get(`${PREFIX}/${params.id}`);
 }
 
 export function updateUser(params) {
-  return axiosInstance.patch(`${PREFIX}/${params.id}`, {
-    name: params.name,
-  });
+  return axiosInstance.patch(`${PREFIX}/${params._id}`, params);
 }
 
 export function deleteUser(params) {

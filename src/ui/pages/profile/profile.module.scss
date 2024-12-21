@@ -24,9 +24,16 @@
 
   @media (min-width: $xs) {
     a,
-    button:not(:last-child) {
+    button {
       margin-left: auto;
+      width: 10rem;
     }
+  }
+}
+
+.actions {
+  button:last-child {
+    margin: 0;
   }
 }
 
@@ -43,7 +50,7 @@
 
     .data {
       margin-left: auto;
-      width: 12rem;
+      width: 16rem;
       justify-content: end;
     }
   }

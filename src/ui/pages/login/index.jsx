@@ -1,13 +1,36 @@
 import { Button, Card, Flex, Form, Image, Input } from 'antd';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
-import { REGISTER } from '@boot/router/routes.js';
+import { loginUser } from '@/core/api/auth';
+import { saveToken } from '@/ui/boot/router/auth';
+import useMutate from '@/ui/hooks/useMutate';
+import { PROFILE, REGISTER } from '@boot/router/routes.js';
 import Heading from '@components/heading';
 import Text from '@components/text';
 
 import styles from './login.module.scss';
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const { mutate, isLoading } = useMutate({
+    fetcher: loginUser,
+    onSuccess: (responseData) => {
+      if (responseData?.data) {
+        saveToken(responseData.data);
+        navigate(PROFILE, { replace: true });
+      }
+    },
+    onError: (error) => {
+      console.error(error?.response?.data?.error);
+      // console.error(error);
+    },
+  });
+
+  const handleSubmit = (values) => {
+    mutate(values);
+  };
+
   return (
     <Flex
       className={styles.login}
@@ -22,10 +45,10 @@ const Login = () => {
         <Text text="Щоб увійти, будь ласка, введіть свої дані." />
       </Flex>
       <Card className={styles.form}>
-        <Form className={styles.form} layout="vertical">
+        <Form className={styles.form} layout="vertical" onFinish={handleSubmit}>
           <Form.Item
             label="Email"
-            name="username"
+            name="email"
             rules={[
               { required: true, message: 'Будь ласка введіть вашу пошту!' },
             ]}
@@ -42,7 +65,7 @@ const Login = () => {
             <Input.Password />
           </Form.Item>
           <Form.Item label={null}>
-            <Button className={styles.button} type="primary">
+            <Button className={styles.button} type="primary" htmlType="submit">
               Увійти
             </Button>
           </Form.Item>
