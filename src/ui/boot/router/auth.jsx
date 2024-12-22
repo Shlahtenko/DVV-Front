@@ -5,7 +5,6 @@ export const isAuthenticated = () => {
   if (!token) {
     return false;
   }
-  // console.log(token);
   return true;
 };
 

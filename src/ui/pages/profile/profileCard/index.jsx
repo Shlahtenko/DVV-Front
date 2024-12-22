@@ -2,7 +2,7 @@ import { Button, Card, Flex, Input, List, Select } from 'antd';
 import { useState } from 'react';
 
 import { updateUser } from '@/core/api/user';
-import { options } from '@/ui/constants/course';
+import { profileOptions as options } from '@/ui/constants';
 import useMutate from '@/ui/hooks/useMutate';
 
 import styles from '../profile.module.scss';

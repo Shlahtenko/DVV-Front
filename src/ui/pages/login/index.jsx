@@ -13,7 +13,7 @@ import styles from './login.module.scss';
 const Login = () => {
   const navigate = useNavigate();
 
-  const { mutate, isLoading } = useMutate({
+  const { mutate } = useMutate({
     fetcher: loginUser,
     onSuccess: (responseData) => {
       if (responseData?.data) {
@@ -22,8 +22,7 @@ const Login = () => {
       }
     },
     onError: (error) => {
-      console.error(error?.response?.data?.error);
-      // console.error(error);
+      console.error(error);
     },
   });
 
