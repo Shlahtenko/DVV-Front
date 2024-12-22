@@ -51,7 +51,11 @@ const VoteCard = ({ data, userId, requiredSubjects }) => {
           maxCount={requiredSubjects}
         ></Select>
         <Flex>
-          <Button onClick={handleSave} type="primary">
+          <Button
+            onClick={handleSave}
+            disabled={votedSubjects.length != requiredSubjects}
+            type="primary"
+          >
             Зберегти
           </Button>
         </Flex>
