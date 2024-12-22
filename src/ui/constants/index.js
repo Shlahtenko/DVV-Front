@@ -5,7 +5,7 @@ export const courseVocabulary = {
   4: 2,
 };
 
-export const options = {
+export const profileOptions = {
   faculty: [
     { value: 'Факультет 1' },
     { value: 'Факультет 2' },
@@ -23,3 +23,27 @@ export const options = {
     { value: 'За кошти фізичної особи' },
   ],
 };
+
+export const subjectOptions = [
+  {
+    title: 'Travel English',
+    description: 'Some weird fucking subject',
+    faculty: 'kanava',
+    teacher: 'lil bitch',
+    link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+  },
+  {
+    title: 'Kobets Co',
+    description: 'He will never give you up',
+    faculty: 'infinite money',
+    teacher: 'gigachad',
+    link: 'https://www.youtube.com/watch?v=dQw4w9WgXc',
+  },
+  {
+    title: 'Kobets C',
+    description: 'He will never give you up',
+    faculty: 'infinite money',
+    teacher: 'gigachad',
+    link: 'https://www.youtube.com/watch?v=dQw4w9WgX',
+  },
+];

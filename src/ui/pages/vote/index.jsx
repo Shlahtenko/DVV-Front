@@ -1,41 +1,26 @@
-import { Button, Card, Col, Collapse, Flex, Row, Select } from 'antd';
-import { useState } from 'react';
-import { Link } from 'react-router';
+import { Button, Card, Collapse, Flex } from 'antd';
 
-import { PROFILE } from '@/ui/boot/router/routes';
+import { getUserById } from '@/core/api/user';
+import { getUserIdFromToken } from '@/ui/boot/router/auth';
 import Heading from '@/ui/components/heading';
 import Text from '@/ui/components/text';
-import { courseVocabulary } from '@/ui/constants/course';
+import { courseVocabulary, subjectOptions } from '@/ui/constants';
+import useFetch from '@/ui/hooks/useFetch';
 
 import styles from './vote.module.scss';
+import VoteCard from './voteCard';
 
 const Vote = () => {
-  const mockDataCourse = 3; // логіка фетчингу курсу з профілю юзера
-  const requiredSubjects = courseVocabulary[mockDataCourse];
+  const userId = getUserIdFromToken();
+  const options = subjectOptions;
 
-  const options = [
-    {
-      title: 'Travel English',
-      description: 'Some weird fucking subject',
-      faculty: 'kanava',
-      teacher: 'lil bitch',
-      link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-    },
-    {
-      title: 'Kobets Co',
-      description: 'He will never give you up',
-      faculty: 'infinite money',
-      teacher: 'gigachad',
-      link: 'https://www.youtube.com/watch?v=dQw4w9WgXc',
-    },
-  ];
+  const { data } = useFetch({
+    fetcher: getUserById,
+    keys: ['users', userId],
+    params: { id: userId },
+  });
 
-  const [selectedSubjects, setSelectedSubjects] = useState([]);
-
-  const handleChange = (value) => {
-    setSelectedSubjects(value);
-    console.log(value);
-  };
+  const requiredSubjects = courseVocabulary[data?.course];
 
   return (
     <Flex className={styles.vote} align="center" gap="large" vertical>
@@ -67,39 +52,7 @@ const Vote = () => {
           </Flex>
         </Card>
 
-        <Card className={styles.selection}>
-          <Flex gap="large" vertical>
-            <Heading text={`Вибір дисциплін`} />
-            <Select
-              mode="multiple"
-              placeholder="Оберіть дисципліни"
-              onChange={handleChange}
-              options={options.map((option) => ({
-                label: option.title,
-                value: option.title,
-              }))}
-              maxCount={requiredSubjects}
-            ></Select>
-          </Flex>
-        </Card>
-
-        {selectedSubjects.length > 0 && (
-          <Card className={styles.results}>
-            <Flex className={styles.cards} gap="large" vertical>
-              <Heading text="Обрані дисципліни" />
-              <Row gutter={[16, 16]} justify="center">
-                {selectedSubjects.map((item, index) => (
-                  <Col key={index} xs={24} sm={12}>
-                    <Card style={{ textAlign: 'center' }}>{item}</Card>
-                  </Col>
-                ))}
-              </Row>
-              <Button type="primary">
-                <Link to={PROFILE}>Зберегти</Link>
-              </Button>
-            </Flex>
-          </Card>
-        )}
+        <VoteCard userId={userId} requiredSubjects={requiredSubjects} />
       </Flex>
     </Flex>
   );

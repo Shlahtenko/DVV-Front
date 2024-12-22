@@ -1,8 +1,8 @@
-// import { queryClient } from '@';
 import { Button, Card, Flex, Form, Image, Input } from 'antd';
-import { Link, Navigate, useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
-import { createUser } from '@/core/api/auth';
+import { createUser, loginUser } from '@/core/api/auth';
+import { saveToken } from '@/ui/boot/router/auth';
 import useMutate from '@/ui/hooks/useMutate';
 import { LOGIN, PROFILE } from '@boot/router/routes.js';
 import Heading from '@components/heading';
@@ -13,13 +13,27 @@ import styles from './register.module.scss';
 const Register = () => {
   const navigate = useNavigate();
 
-  const { mutate, isLoading } = useMutate({
-    fetcher: createUser,
-    onSuccess: () => {
-      navigate(PROFILE, { replace: true });
+  const { mutate: loginMutate } = useMutate({
+    fetcher: loginUser,
+    onSuccess: (responseData) => {
+      if (responseData?.data) {
+        saveToken(responseData.data);
+        navigate(PROFILE, { replace: true });
+      }
     },
     onError: (error) => {
-      console.error(error?.response?.data?.error);
+      console.error(error);
+    },
+  });
+
+  const { mutate } = useMutate({
+    fetcher: createUser,
+    onSuccess: (_, variables) => {
+      const { email, password } = variables;
+      loginMutate({ email, password });
+    },
+    onError: (error) => {
+      console.error(error);
     },
   });
 
@@ -27,7 +41,6 @@ const Register = () => {
     const fullname = `${values.name} ${values.surname}`;
     const { name, surname, ...data } = values;
     const finalData = { fullname, ...data };
-    // console.log(finalData);
     mutate(finalData);
   };
 
