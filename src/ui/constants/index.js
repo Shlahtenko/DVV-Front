@@ -31,6 +31,7 @@ export const subjectOptions = [
     faculty: 'kanava',
     teacher: 'lil bitch',
     link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+    course: 3,
   },
   {
     title: 'Kobets Co',
@@ -38,6 +39,7 @@ export const subjectOptions = [
     faculty: 'infinite money',
     teacher: 'gigachad',
     link: 'https://www.youtube.com/watch?v=dQw4w9WgXc',
+    course: 1,
   },
   {
     title: 'Kobets C',
@@ -45,5 +47,6 @@ export const subjectOptions = [
     faculty: 'infinite money',
     teacher: 'gigachad',
     link: 'https://www.youtube.com/watch?v=dQw4w9WgX',
+    course: 2,
   },
 ];

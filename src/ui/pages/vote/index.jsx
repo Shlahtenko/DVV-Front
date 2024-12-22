@@ -12,13 +12,16 @@ import VoteCard from './voteCard';
 
 const Vote = () => {
   const userId = getUserIdFromToken();
-  const options = subjectOptions;
 
   const { data } = useFetch({
     fetcher: getUserById,
     keys: ['users', userId],
     params: { id: userId },
   });
+
+  const options = subjectOptions.filter(
+    (subject) => subject.course == data?.course,
+  );
 
   const requiredSubjects = courseVocabulary[data?.course];
 
@@ -52,7 +55,11 @@ const Vote = () => {
           </Flex>
         </Card>
 
-        <VoteCard userId={userId} requiredSubjects={requiredSubjects} />
+        <VoteCard
+          data={data}
+          userId={userId}
+          requiredSubjects={requiredSubjects}
+        />
       </Flex>
     </Flex>
   );

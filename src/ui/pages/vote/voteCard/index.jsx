@@ -5,12 +5,12 @@ import { useNavigate } from 'react-router';
 import { updateVotes } from '@/core/api/vote';
 import { PROFILE } from '@/ui/boot/router/routes';
 import Heading from '@/ui/components/heading';
-import { subjectOptions as options } from '@/ui/constants';
+import { subjectOptions } from '@/ui/constants';
 import useMutate from '@/ui/hooks/useMutate';
 
 import styles from '../vote.module.scss';
 
-const VoteCard = ({ userId, requiredSubjects }) => {
+const VoteCard = ({ data, userId, requiredSubjects }) => {
   const [votedSubjects, setVotedSubjects] = useState([]);
 
   const navigate = useNavigate();
@@ -24,6 +24,10 @@ const VoteCard = ({ userId, requiredSubjects }) => {
       console.error('Failed to patch user:', error);
     },
   });
+
+  const options = subjectOptions.filter(
+    (subject) => subject.course == data?.course,
+  );
 
   const handleChange = (value) => {
     setVotedSubjects(value);
