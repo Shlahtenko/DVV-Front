@@ -28,19 +28,15 @@ const VoteCard = ({ tempData }) => {
           <Card>
             <Flex align="flex-end" gap="middle" vertical>
               <Flex
-                className={styles.cards}
+                className={styles.selectedSubjects}
                 gap="large"
                 align="center"
                 vertical
               >
                 <Heading text="Обрані дисципліни вільного вибору" />
-                <Row gutter={[16, 16]} justify="center">
-                  {tempData.votedSubjects.map((item) => (
-                    <Col key={item.id} xs={24} sm={12}>
-                      <Card style={{ textAlign: 'center' }}>{item}</Card>
-                    </Col>
-                  ))}
-                </Row>
+                {tempData.votedSubjects.map((item) => (
+                  <Card>{item}</Card>
+                ))}
               </Flex>
               <Flex
                 className={styles.vote}
