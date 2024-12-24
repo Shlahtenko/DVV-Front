@@ -10,7 +10,7 @@ import styles from '../profile.module.scss';
 const ProfileCard = ({ data, tempData, setTempData }) => {
   const [isEditing, setIsEditing] = useState(false);
 
-  const { mutate, isLoading } = useMutate({
+  const { mutate } = useMutate({
     fetcher: updateUser,
     onSuccess: (responseData) => {
       if (responseData?.data) {
@@ -29,7 +29,7 @@ const ProfileCard = ({ data, tempData, setTempData }) => {
   };
 
   const handleCancel = () => {
-    setTempData({ ...tempData });
+    setTempData(data);
     setIsEditing(false);
   };
 
