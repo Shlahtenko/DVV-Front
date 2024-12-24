@@ -13,6 +13,17 @@ import styles from './register.module.scss';
 const Register = () => {
   const navigate = useNavigate();
 
+  const { mutate } = useMutate({
+    fetcher: createUser,
+    onSuccess: (_, variables) => {
+      const { email, password } = variables;
+      loginMutate({ email, password });
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
+
   const { mutate: loginMutate } = useMutate({
     fetcher: loginUser,
     onSuccess: (responseData) => {
@@ -20,17 +31,6 @@ const Register = () => {
         saveToken(responseData.data);
         navigate(PROFILE, { replace: true });
       }
-    },
-    onError: (error) => {
-      console.error(error);
-    },
-  });
-
-  const { mutate } = useMutate({
-    fetcher: createUser,
-    onSuccess: (_, variables) => {
-      const { email, password } = variables;
-      loginMutate({ email, password });
     },
     onError: (error) => {
       console.error(error);

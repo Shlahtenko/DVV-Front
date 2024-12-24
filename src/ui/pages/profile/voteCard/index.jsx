@@ -1,4 +1,4 @@
-import { Button, Card, Col, Flex, Row } from 'antd';
+import { Button, Card, Flex } from 'antd';
 import { Link } from 'react-router';
 
 import Heading from '@/ui/components/heading';
@@ -18,7 +18,7 @@ const VoteCard = ({ tempData }) => {
               justify="space-between"
               gap="middle"
             >
-              <Text text="Вам потрібно обрати дисципліни вільного вибору"></Text>
+              <Text text="Вам потрібно обрати дисципліни вільного вибору" />
               <Button type="primary">
                 <Link to="/vote">Обрати</Link>
               </Button>

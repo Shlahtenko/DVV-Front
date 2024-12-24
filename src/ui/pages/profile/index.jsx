@@ -14,15 +14,17 @@ import VoteCard from './voteCard';
 
 const Profile = () => {
   const userId = getUserIdFromToken();
-  const { data, error, isFetching } = useFetch({
+
+  const { data, isFetching } = useFetch({
     fetcher: getUserById,
     keys: ['users', userId],
     params: { id: userId },
   });
 
   const [tempData, setTempData] = useState(null);
+
   useEffect(() => {
-    if (data) {
+    if (!isFetching) {
       setTempData({ ...data });
     }
   }, [data]);

@@ -36,7 +36,7 @@ const Vote = () => {
             <Heading text={`Огляд дисциплін`} />
             <Collapse accordion>
               {options.map((option) => (
-                <Collapse.Panel header={option.title} key={option.link}>
+                <Collapse.Panel header={option.title} key={option.title}>
                   <Flex gap="large" vertical>
                     <Flex vertical>
                       <Text bpref="Викладач:" text={option.teacher} />
@@ -47,7 +47,9 @@ const Vote = () => {
                       />
                     </Flex>
 
-                    <Button href={option.link}>Презентація</Button>
+                    {option.link && (
+                      <Button href={option.link}>Презентація</Button>
+                    )}
                   </Flex>
                 </Collapse.Panel>
               ))}

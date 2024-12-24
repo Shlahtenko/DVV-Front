@@ -1,8 +1,8 @@
 export const courseVocabulary = {
-  1: 2,
-  2: 3,
-  3: 4,
-  4: 2,
+  1: 1,
+  2: 1,
+  3: 1,
+  4: 1,
 };
 
 export const profileOptions = {
@@ -31,7 +31,7 @@ export const subjectOptions = [
     faculty: 'kanava',
     teacher: 'lil bitch',
     link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-    course: 3,
+    course: 2,
   },
   {
     title: 'Kobets Co',
@@ -39,14 +39,14 @@ export const subjectOptions = [
     faculty: 'infinite money',
     teacher: 'gigachad',
     link: 'https://www.youtube.com/watch?v=dQw4w9WgXc',
-    course: 1,
+    course: 2,
   },
   {
     title: 'Kobets C',
     description: 'He will never give you up',
     faculty: 'infinite money',
     teacher: 'gigachad',
-    link: 'https://www.youtube.com/watch?v=dQw4w9WgX',
+    // link: ,
     course: 2,
   },
 ];
