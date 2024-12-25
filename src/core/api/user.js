@@ -13,8 +13,3 @@ export function getUserById(params) {
 export function updateUser(params) {
   return axiosInstance.patch(`${PREFIX}/${params._id}`, params);
 }
-
-//* No UI to be used with
-// export function deleteUser(params) {
-//   return axiosInstance.delete(`${PREFIX}/${params.userId}`);
-// }
