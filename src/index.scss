@@ -1,5 +1,3 @@
-@import '@styles/values.scss';
-
 * {
   margin: 0;
   padding: 0;
@@ -10,7 +8,7 @@
 body {
   display: flex;
   justify-content: center;
-  background-color: $body-color;
+  background-color: #f8f8f8;
 }
 
 h1,

@@ -1,8 +1,7 @@
-@import '@styles/values.scss';
+@use '@styles/variables' as *;
 
 .vote {
   padding: 2rem 1rem;
-  background-color: $body-color;
   min-height: 100vh;
 
   > h2 {

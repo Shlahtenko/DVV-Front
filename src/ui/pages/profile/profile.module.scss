@@ -1,11 +1,10 @@
-@import '@styles/values.scss';
+@use '@styles/variables' as *;
 
 .profile {
   padding: 2rem 1rem;
-  background-color: $body-color;
   min-height: 100vh;
 
-  > h2 {
+  h2 {
     text-align: center;
   }
 
@@ -57,7 +56,7 @@
 }
 
 .selectedSubjects {
-  > div {
+  div {
     width: 100%;
     text-align: center;
   }

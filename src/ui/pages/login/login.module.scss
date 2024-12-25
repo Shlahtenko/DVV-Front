@@ -1,4 +1,4 @@
-@import '@styles/values.scss';
+@use '@styles/variables' as *;
 
 .login {
   padding: 2rem 1rem;
