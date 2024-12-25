@@ -14,6 +14,7 @@ export function updateUser(params) {
   return axiosInstance.patch(`${PREFIX}/${params._id}`, params);
 }
 
-export function deleteUser(params) {
-  return axiosInstance.delete(`${PREFIX}/${params.userId}`);
-}
+//* No UI to be used with
+// export function deleteUser(params) {
+//   return axiosInstance.delete(`${PREFIX}/${params.userId}`);
+// }
