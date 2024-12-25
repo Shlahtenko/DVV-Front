@@ -14,10 +14,11 @@
 
   @media (min-width: $sm) {
     padding: 2rem 3rem;
+    width: 36rem;
   }
 
-  @media (min-width: $md) {
-    width: 48rem;
+  @media (min-width: $lg) {
+    width: 54rem;
   }
 }
 
