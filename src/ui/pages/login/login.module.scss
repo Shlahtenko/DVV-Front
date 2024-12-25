@@ -3,7 +3,6 @@
 .login {
   padding: 2rem 1rem;
   min-height: 100vh;
-  max-width: 24rem;
 
   h2,
   p {
@@ -11,11 +10,7 @@
   }
 
   @media (min-width: $xs) {
-    padding: 2rem;
-  }
-
-  @media (min-width: $sm) {
-    padding: 2rem 3rem;
+    width: 24rem;
   }
 }
 

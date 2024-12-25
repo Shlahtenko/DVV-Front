@@ -43,8 +43,8 @@ const Login = () => {
         <Heading text="З поверненням!" />
         <Text text="Щоб увійти, будь ласка, введіть свої дані." />
       </Flex>
-      <Card className={styles.form}>
-        <Form className={styles.form} layout="vertical" onFinish={handleSubmit}>
+      <Card className={styles.card}>
+        <Form layout="vertical" onFinish={handleSubmit}>
           <Form.Item
             label="Email"
             name="email"
