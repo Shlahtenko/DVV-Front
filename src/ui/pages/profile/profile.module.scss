@@ -61,6 +61,12 @@
       }
     }
   }
+
+  @media (min-width: $lg) {
+    .data {
+      width: 24rem;
+    }
+  }
 }
 
 .selectedSubjects {
