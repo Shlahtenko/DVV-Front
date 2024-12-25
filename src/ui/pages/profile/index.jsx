@@ -24,7 +24,7 @@ const Profile = () => {
   const [tempData, setTempData] = useState(null);
 
   useEffect(() => {
-    if (!isFetching) {
+    if (data) {
       setTempData({ ...data });
     }
   }, [data]);
