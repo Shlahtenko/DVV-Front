@@ -37,7 +37,7 @@ const VoteCard = ({ data, userId, requiredSubjects }) => {
   };
 
   return (
-    <Card className={styles.selection}>
+    <Card>
       <Flex gap="large" vertical>
         <Heading text={`Вибір дисциплін`} />
         <Select
