@@ -20,10 +20,10 @@ const Vote = () => {
   });
 
   const options = subjectOptions.filter(
-    (subject) => subject.course == data?.course,
+    (subject) => subject.course == data.course,
   );
 
-  const requiredSubjects = courseVocabulary[data?.course];
+  const requiredSubjects = courseVocabulary[data.course];
 
   return (
     <Flex className={styles.vote} align="center" gap="large" vertical>
@@ -48,7 +48,9 @@ const Vote = () => {
                     </Flex>
 
                     {option.link && (
-                      <Button href={option.link}>Презентація</Button>
+                      <Button href={option.link} target="_blank">
+                        Презентація
+                      </Button>
                     )}
                   </Flex>
                 </Collapse.Panel>
