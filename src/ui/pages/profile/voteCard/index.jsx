@@ -26,7 +26,7 @@ const VoteCard = ({ tempData }) => {
           </Card>
         ) : (
           <Card>
-            <Flex align="flex-end" gap="middle" vertical>
+            <Flex gap="middle" vertical>
               <Flex
                 className={styles.selectedSubjects}
                 gap="large"
