@@ -2,7 +2,6 @@
 
 .vote {
   padding: 2rem 1rem;
-  max-width: 30rem;
   min-height: 100vh;
 
   > h2 {
@@ -16,11 +15,14 @@
   @media (min-width: $sm) {
     padding: 2rem 3rem;
   }
+
+  @media (min-width: $md) {
+    width: 48rem;
+  }
 }
 
 .content {
   width: 100%;
-  max-width: 54rem;
   @media (min-width: $xs) {
     a,
     button {
