@@ -14,12 +14,16 @@
 
   @media (min-width: $sm) {
     padding: 2rem 3rem;
+    width: 36rem;
+  }
+
+  @media (min-width: $lg) {
+    width: 54rem;
   }
 }
 
 .content {
   width: 100%;
-  max-width: 54rem;
 
   @media (min-width: $xs) {
     a,
@@ -50,6 +54,11 @@
     .data {
       margin-left: auto;
       width: 16rem;
+      > div:not(.dropdown) {
+        width: 100%;
+        text-align: end;
+        justify-content: flex-end;
+      }
     }
   }
 }
