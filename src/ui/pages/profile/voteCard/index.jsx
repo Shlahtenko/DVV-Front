@@ -6,11 +6,11 @@ import Text from '@/ui/components/text';
 
 import styles from '../profile.module.scss';
 
-const VoteCard = ({ tempData }) => {
+const VoteCard = ({ data }) => {
   return (
     <>
-      {tempData?.course ? (
-        !tempData?.votedSubjects.length > 0 ? (
+      {data?.course ? (
+        !data?.votedSubjects.length > 0 ? (
           <Card>
             <Flex
               className={styles.vote}
@@ -34,8 +34,8 @@ const VoteCard = ({ tempData }) => {
                 vertical
               >
                 <Heading text="Обрані дисципліни вільного вибору" />
-                {tempData.votedSubjects.map((item) => (
-                  <Card>{item}</Card>
+                {data.votedSubjects.map((item, index) => (
+                  <Card key={index}>{item}</Card>
                 ))}
               </Flex>
               <Flex
