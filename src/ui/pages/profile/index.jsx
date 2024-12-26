@@ -15,17 +15,17 @@ import VoteCard from './voteCard';
 const Profile = () => {
   const userId = getUserIdFromToken();
 
-  const { data, isFetching } = useFetch({
+  const { data, refetch } = useFetch({
     fetcher: getUserById,
     keys: ['users', userId],
     params: { id: userId },
   });
 
-  const [tempData, setTempData] = useState(null);
+  const [editableData, setEditableData] = useState(null);
 
   useEffect(() => {
     if (data) {
-      setTempData({ ...data });
+      setEditableData({ ...data });
     }
   }, [data]);
 
@@ -35,10 +35,11 @@ const Profile = () => {
       <Flex className={styles.content} gap="large" vertical>
         <ProfileCard
           data={data}
-          tempData={tempData}
-          setTempData={setTempData}
+          editableData={editableData}
+          setEditableData={setEditableData}
+          refetch={refetch}
         />
-        <VoteCard tempData={tempData} />
+        <VoteCard data={data} />
         <Button onClick={clearToken} type="primary" danger>
           <Link to={LOGIN}>Вийти з акаунту</Link>
         </Button>
