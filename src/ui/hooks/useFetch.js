@@ -7,14 +7,14 @@ const useFetch = ({
   refetchOnWindowFocus = false,
   ...queryProps
 }) => {
-  const { data, error, isFetching } = useQuery({
+  const { data, error, isFetching, refetch } = useQuery({
     queryKey: [...keys, params],
     queryFn: () => fetcher(params),
     refetchOnWindowFocus,
     ...queryProps,
   });
 
-  return { data, error, isFetching };
+  return { data, error, isFetching, refetch };
 };
 
 export default useFetch;
