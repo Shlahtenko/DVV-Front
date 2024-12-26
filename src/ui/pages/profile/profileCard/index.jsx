@@ -7,66 +7,64 @@ import useMutate from '@/ui/hooks/useMutate';
 
 import styles from '../profile.module.scss';
 
-const ProfileCard = ({ data, tempData, setTempData }) => {
+const ProfileCard = ({ data, editableData, setEditableData, refetch }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const { mutate } = useMutate({
     fetcher: updateUser,
-    onSuccess: (responseData) => {
-      if (responseData?.data) {
-        setTempData(responseData.data);
-      }
+    onSuccess: () => {
+      refetch();
     },
     onError: (error) => {
-      setTempData(data);
+      setEditableData(data);
       console.error('Failed to patch user:', error);
     },
   });
 
   const handleSave = () => {
-    mutate(tempData);
+    mutate(editableData);
     setIsEditing(false);
   };
 
   const handleCancel = () => {
-    setTempData(data);
+    setEditableData(data);
     setIsEditing(false);
   };
 
   const handleTempChange = (key, value) => {
-    setTempData((prev) => ({ ...prev, [key]: value }));
+    setEditableData((prev) => ({ ...prev, [key]: value }));
   };
 
   const listColumns = [
-    { key: 'email', title: 'Електронна пошта', value: tempData?.email },
+    { key: 'email', title: 'Електронна пошта', value: editableData?.email },
     {
       key: 'faculty',
       title: 'Факультет',
-      value: tempData?.faculty,
+      value: editableData?.faculty,
       options: options.faculty,
     },
     {
       key: 'specialty',
       title: 'Спеціальність',
-      value: tempData?.specialty,
+      value: editableData?.specialty,
       options: options.specialty,
     },
     {
       key: 'grade',
       title: 'Ступінь',
-      value: tempData?.grade,
+      value: editableData?.grade,
       options: options.grade,
     },
     {
       key: 'course',
       title: 'Курс',
-      value: tempData?.course,
+      value: editableData?.course,
       options: options.course,
     },
     {
       key: 'form',
       title: 'Форма навчання',
-      value: tempData?.form,
+      value: editableData?.form,
       options: options.form,
     },
   ];
@@ -84,13 +82,13 @@ const ProfileCard = ({ data, tempData, setTempData }) => {
                 {isEditing ? (
                   key === 'email' ? (
                     <Input
-                      value={tempData[key]}
+                      value={editableData[key]}
                       onChange={(e) => handleTempChange(key, e.target.value)}
                     />
                   ) : (
                     <Select
                       className={styles.dropdown}
-                      value={tempData[key]}
+                      value={editableData[key]}
                       options={options}
                       onChange={(value) => handleTempChange(key, value)}
                     />
